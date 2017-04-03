@@ -76,4 +76,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  
+  ENV["DARK_SKY_API_KEY"] = "ed51e2e9bc6bdfb57b10afd9afab1601"
+  
 end
