@@ -19,6 +19,8 @@
       <div class="first_section">
         <h1 class="title-1">Hi, I'm Siyu Liu</h1>
         <h2 class="title-2">Welcome to my website</h2>
+       
+        
       </div>
     </div>
       <div class="container">
@@ -30,8 +32,8 @@
             <div class="skills">
               <h3 class="skills_title">My skills</h3>
               <ul class="skills-list">
-                <li id="skill-1">Skill 1</li>
-                <li id="skill-2">Skill 2</li>
+                <li id="skill-1">Product Management</li>
+                <li id="skill-2">Enterprise Storage</li>
                 <li id="skill-3">Skill 3</li>
                 <li id="skill-4">Skill 4</li>
               </ul>
@@ -39,9 +41,9 @@
             <div class="passions">
               <h3 class="passions_title">My Passions</h3>
               <ul class="passions-list">
-                <li id="passion-1">Passion 1</li>
-                <li id="passion-2">Passion 2</li>
-                <li id="passion-3">Passion 3</li>
+                <li id="passion-1">Movies</li>
+                <li id="passion-2">Travelling</li>
+                <li id="passion-3">Fashion</li>
                 <li id="passion-4">Passion 4</li>
               </ul>
             </div>
@@ -80,22 +82,27 @@
       
       title.hover(changeTitleColor);
       
-   $.ajax({
+   
+      
+      navigator.geolocation.getCurrentPosition((location) => {
+  var latitude = location.coords.latitude
+  var longitude = location.coords.latitude
+
+    $.ajax({
           url: 'api/v1/weather',
           type: 'GET',
-          // data: { lat: lat, lon: lon},
+          data: { lat: latitude, lon: longitude} ,
           contentType: 'application/json; charset=utf-8',
           success: function (response) {
-            var summary = response["currently"]["summary"];
-            var temp = response.currently.temperature;
-            var subTitle = $('.title-2');
-            subTitle.text("It is " + temp + " degrees and " + summary.toLowerCase() + ".");
+            $(".title-2").replaceWith("<h2 class='title-2'>It is currently "+ response["currently"]["temperature"] + " degrees</h2>");
           },
           error: function () {
-            console.log(response);
+              console.log(response);
           }
       });
+});
       
+
     </script>
     
     </body>
